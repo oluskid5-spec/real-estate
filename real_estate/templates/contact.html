@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Contact | Prime Homes{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><p class="eyebrow">GET IN TOUCH</p><h1>Let's find your <span>next move.</span></h1></div></section>
+<section class="section contact-section"><div class="container contact-grid"><div class="contact-info"><p class="eyebrow dark">CONTACT PRIME HOMES</p><h2>Have a question? <span>We're here.</span></h2><p>Whether you are looking to buy, rent or invest, our team is ready to help you find the right opportunity.</p><div class="contact-details"><div><strong>PHONE</strong><p>+2348035557058</p></div><div><strong>EMAIL</strong><p>info@primehomes.com</p></div><div><strong>LOCATION</strong><p>Lagos, Nigeria</p></div></div></div>
+<div class="contact-form"><h3>Send us a message</h3><form method="POST">{% csrf_token %}{% for field in form %}<div class="form-group"><label>{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}<div class="form-group"><label>Property of Interest</label><select name="property" class="form-control"><option value="">Select a property</option>{% for property in properties %}<option value="{{ property.id }}">{{ property.title }}</option>{% endfor %}</select></div><button type="submit" class="button button-black">SEND MESSAGE →</button></form></div></div></section>
+{% endblock %}

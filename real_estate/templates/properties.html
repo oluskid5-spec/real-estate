@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Properties | Prime Homes{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><p class="eyebrow">PRIME HOMES LISTINGS</p><h1>Find a property <span>you'll love.</span></h1></div></section>
+<section class="section properties-page"><div class="container">
+<form method="GET" class="search-form"><div class="search-input-wrapper"><span>⌕</span><input type="text" name="q" value="{{ query }}" placeholder="Search by property title or location..."></div><button type="submit" class="button button-black">SEARCH</button>{% if query %}<a href="{% url 'properties' %}" class="clear-search">Clear</a>{% endif %}</form>
+{% if query %}<p class="search-result">Showing results for: <strong>"{{ query }}"</strong></p>{% endif %}
+{% if properties %}<div class="property-grid">{% for property in properties %}<article class="property-card"><a href="{% url 'property_detail' property.id %}" class="property-image">{% if property.image %}<img src="{{ property.image.url }}" alt="{{ property.title }}">{% else %}<img src="{% static 'images/property-placeholder.svg' %}" alt="Property placeholder">{% endif %}<span class="property-category">{{ property.category.name }}</span></a><div class="property-info"><h3>{{ property.title }}</h3><p class="location">● {{ property.location }}</p><div class="property-bottom"><strong>₦{{ property.price|floatformat:0 }}</strong><a href="{% url 'property_detail' property.id %}">DETAILS →</a></div></div></article>{% endfor %}</div>{% else %}<div class="empty-state"><h3>No properties found.</h3><p>Try searching for another property title or location.</p><a href="{% url 'properties' %}" class="button button-black">VIEW ALL PROPERTIES</a></div>{% endif %}
+</div></section>
+{% endblock %}

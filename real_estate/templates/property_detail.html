@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ property.title }} | Prime Homes{% endblock %}
+{% block content %}
+<section class="property-detail"><div class="container"><a href="{% url 'properties' %}" class="back-link">← BACK TO PROPERTIES</a><div class="detail-grid"><div class="detail-image">{% if property.image %}<img src="{{ property.image.url }}" alt="{{ property.title }}">{% else %}<img src="{% static 'images/property-placeholder.svg' %}" alt="Property placeholder">{% endif %}</div><div class="detail-content"><p class="eyebrow dark">{{ property.category.name }}</p><h1>{{ property.title }}</h1><p class="detail-location">● {{ property.location }}</p><div class="detail-price">₦{{ property.price|floatformat:0 }}</div><div class="detail-description"><h3>Property Description</h3><p>{{ property.description }}</p></div></div></div>
+<div class="inquiry-section"><div class="inquiry-intro"><p class="eyebrow dark">INTERESTED?</p><h2>Ask us about <span>this property.</span></h2><p>Complete the form and one of our property consultants will contact you.</p></div><div class="inquiry-form"><form method="POST">{% csrf_token %}{% for field in form %}<div class="form-group"><label>{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}<button type="submit" class="button button-black">SEND INQUIRY →</button></form></div></div>
+</div></section>
+{% endblock %}

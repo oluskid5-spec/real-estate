@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prime Homes Ltd - Find your perfect property.">
+<title>{% block title %}Prime Homes | Real Estate{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-container">
+<a href="{% url 'home' %}" class="logo"><span class="logo-mark">P</span><span class="logo-text">PRIME<strong>HOMES</strong></span></a>
+<button class="menu-toggle" id="menuToggle">☰</button>
+<nav class="main-nav" id="mainNav">
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'about' %}">About</a>
+<a href="{% url 'properties' %}">Properties</a>
+<a href="{% url 'contact' %}">Contact</a>
+<a href="{% url 'properties' %}" class="nav-button">FIND A HOME</a>
+</nav>
+</div>
+</header>
+{% if messages %}<div class="messages-wrapper"><div class="container">{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}<button class="message-close" onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div></div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="site-footer">
+<div class="container footer-grid">
+<div><a href="{% url 'home' %}" class="footer-logo">PRIME HOMES</a><p>Helping you find spaces where life happens and memories are made.</p></div>
+<div><h4>Quick Links</h4><a href="{% url 'home' %}">Home</a><a href="{% url 'about' %}">About</a><a href="{% url 'properties' %}">Properties</a><a href="{% url 'contact' %}">Contact</a></div>
+<div><h4>Contact</h4><p>Lagos, Nigeria</p><p>+234 803 555 7058</p><p>info@primehomes.com</p></div>
+<div><h4>Let's Connect</h4><p>Looking for your next home? Talk to our property experts today.</p><a href="{% url 'contact' %}" class="footer-button">CONTACT US</a></div>
+</div>
+<div class="footer-bottom"><div class="container"><p>© {% now "Y" %} Prime Homes Ltd. All Rights Reserved.</p></div></div>
+</footer>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
